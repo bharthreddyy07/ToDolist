@@ -13,7 +13,7 @@ document.getElementById("taskadder").addEventListener("click", function() {
         });
 
         if (taskExists) {
-            alert("Task is already present in the list.");
+            alert("This task is already present in the list.");
         } else {
             let li = document.createElement("li");
 
