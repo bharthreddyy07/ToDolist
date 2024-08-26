@@ -1,29 +1,37 @@
-document.getElementById("taskadder").addEventListener("click",function(){
-    let task = document.getElementById("taskinput").value;
+document.getElementById("taskadder").addEventListener("click", function() {
+    let task = document.getElementById("taskinput").value.trim();
     
-    if (task!==""){
-        let tasklist=document.getElementById("tasklist");
+    if (task !== "") {
+        let tasklist = document.getElementById("tasklist");
+        let tasks = document.querySelectorAll("#tasklist li span");
+        let taskExists = false;
 
-        let li = document.createElement("li");
-
-        let taskspan=document.createElement("span");
-        taskspan.textContent=task;
-        li.appendChild(taskspan);
-
-
-        let dltbtn=document.createElement("button");
-        dltbtn.textContent="Delete";
-        dltbtn.className="dltbtn";
-        li.appendChild(dltbtn);
-
-        dltbtn.addEventListener("click",function(){
-            tasklist.removeChild(li);
+        tasks.forEach(function(existingTask) {
+            if (existingTask.textContent === task) {
+                taskExists = true;
+            }
         });
-        
-        tasklist.appendChild(li);
-        taskinput.value="";
 
+        if (taskExists) {
+            alert("Task is already present in the list.");
+        } else {
+            let li = document.createElement("li");
+
+            let taskspan = document.createElement("span");
+            taskspan.textContent = task;
+            li.appendChild(taskspan);
+
+            let dltbtn = document.createElement("button");
+            dltbtn.textContent = "Delete";
+            dltbtn.className = "dltbtn";
+            li.appendChild(dltbtn);
+
+            dltbtn.addEventListener("click", function() {
+                tasklist.removeChild(li);
+            });
+
+            tasklist.appendChild(li);
+            document.getElementById("taskinput").value = "";
+        }
     }
-
-    
 });
