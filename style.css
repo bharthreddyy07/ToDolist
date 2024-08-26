@@ -25,6 +25,10 @@ body{
     background-color: rgb(122, 232, 74);
 }
 
+.button:hover{
+    cursor: pointer;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
